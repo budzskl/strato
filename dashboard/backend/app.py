@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import json
 import os
 
 app = Flask(__name__)
+CORS(app)  # Allow requests from React frontend
+
 DATA_FILE = "tasks.json"
 
 # Load tasks
@@ -18,10 +21,12 @@ def save_tasks(tasks):
     with open(DATA_FILE, "w") as f:
         json.dump(tasks, f, indent=2)
 
+# Get all tasks
 @app.route("/tasks", methods=["GET"])
 def get_tasks():
     return jsonify(load_tasks())
 
+# Add a new task
 @app.route("/tasks", methods=["POST"])
 def add_task():
     tasks = load_tasks()
@@ -30,24 +35,26 @@ def add_task():
     save_tasks(tasks)
     return jsonify({"status": "added"})
 
-@app.route("/tasks/<int:index>", methods=["PUT"])
-def update_task(index):
+# Update task by id
+@app.route("/tasks/<int:task_id>", methods=["PUT"])
+def update_task(task_id):
     tasks = load_tasks()
-    if 0 <= index < len(tasks):
-        updated_task = request.json
-        tasks[index] = updated_task
-        save_tasks(tasks)
-        return jsonify({"status": "updated"})
-    return jsonify({"error": "invalid index"}), 400
+    for i, task in enumerate(tasks):
+        if task["id"] == task_id:
+            tasks[i] = request.json
+            save_tasks(tasks)
+            return jsonify({"status": "updated"})
+    return jsonify({"error": "task not found"}), 404
 
-@app.route("/tasks/<int:index>", methods=["DELETE"])
-def delete_task(index):
+# Delete task by id
+@app.route("/tasks/<int:task_id>", methods=["DELETE"])
+def delete_task(task_id):
     tasks = load_tasks()
-    if 0 <= index < len(tasks):
-        tasks.pop(index)
-        save_tasks(tasks)
-        return jsonify({"status": "deleted"})
-    return jsonify({"error": "invalid index"}), 400
+    updated_tasks = [t for t in tasks if t["id"] != task_id]
+    if len(updated_tasks) == len(tasks):
+        return jsonify({"error": "task not found"}), 404
+    save_tasks(updated_tasks)
+    return jsonify({"status": "deleted"})
 
 if __name__ == "__main__":
     app.run(debug=True)

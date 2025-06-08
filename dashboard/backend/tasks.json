@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "id": 1748839944506,
+    "title": "Setup Meet-a-Motorolean",
+    "due": "2025-06-02",
+    "done": false,
+    "priority": "low",
+    "createdAt": "2025-06-02T04:52:24.506Z"
+  },
+  {
+    "id": 1748839955992,
+    "title": "Journal",
+    "due": "2025-06-02",
+    "done": false,
+    "priority": "low",
+    "createdAt": "2025-06-02T04:52:35.992Z"
+  },
+  {
+    "id": 1748840175344,
+    "title": "Add recurring tasks to Strato",
+    "due": "2025-06-02",
+    "done": false,
+    "priority": "low",
+    "createdAt": "2025-06-02T04:56:15.344Z"
+  },
+  {
+    "id": 1748840192245,
+    "title": "Gym (if feeling better)",
+    "due": "2025-06-02",
+    "done": false,
+    "priority": "medium",
+    "createdAt": "2025-06-02T04:56:32.245Z"
+  },
+  {
+    "id": 1748840209049,
+    "title": "Supplements + Tracking ",
+    "due": "2025-06-02",
+    "done": false,
+    "priority": "medium",
+    "createdAt": "2025-06-02T04:56:49.049Z"
+  },
+  {
+    "id": 1748840715399,
+    "title": "Fix Strato events",
+    "due": "2025-06-02",
+    "done": false,
+    "priority": "low",
+    "createdAt": "2025-06-02T05:05:15.399Z"
+  }
+]

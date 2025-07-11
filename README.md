@@ -1,2 +1,2 @@
 # strato
-my personal deashbaord for all my life stuff
+my personal dashboard for all my life stuff

@@ -4,7 +4,7 @@ function App() {
   const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
-    fetch("http://localhost:5050/api/status")
+    fetch("http://localhost:5050/home")
 
       .then((res) => {
         console.log("RAW RESPONSE →", res.status, res.headers.get("content-type"));
